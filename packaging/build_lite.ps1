@@ -39,6 +39,7 @@ New-Item -ItemType Directory -Force -Path $sitePackages | Out-Null
 $pthLines = @(
     "python311.zip",
     ".",
+    "..",
     "Lib\site-packages",
     "import site"
 )
