@@ -2,6 +2,8 @@ name: Build ClipForge Lite installer
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
     tags:
       - "clipforge-lite-v*"
 permissions:
@@ -12,7 +14,7 @@ concurrency:
 jobs:
   windows:
     runs-on: windows-latest
-    timeout-minutes: 120
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -51,4 +53,4 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create $env:GITHUB_REF_NAME "dist_installer\ClipForge-Lite-Setup-v1.0.0.exe" --title "ClipForge Lite $env:GITHUB_REF_NAME" --notes "Windows x64 CPU-optimized installer. Includes embedded Python, FFmpeg and Whisper Base INT8. No CUDA or paid API key."
+          gh release create $env:GITHUB_REF_NAME "dist_installer\\ClipForge-Lite-Setup-v1.0.0.exe" --title "ClipForge Lite $env:GITHUB_REF_NAME" --notes "Windows x64 CPU-optimized installer. Includes embedded Python, FFmpeg and Whisper Base INT8. No CUDA or paid API key."
